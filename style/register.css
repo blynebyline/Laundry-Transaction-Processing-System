@@ -1,0 +1,15 @@
+.agree-policy{
+    margin-bottom: 22px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#policy {
+    font-size: 10px;
+}
+
+.fname label,
+.lname label {
+    display: block;
+    margin-bottom: 8px;
+}
