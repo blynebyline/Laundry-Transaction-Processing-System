@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/global.css" />
+    <link rel="stylesheet" href="/style/dashboard.css" />
+    <link rel="stylesheet" href="/style/header.css" />
+    <title>Customer Dashboard</title>
+  </head>
+  <body>
+    <header>
+        <nav class="header-nav">
+            <a href="#">MY ORDERS</a>
+            <a href="#">TRACK</a>
+        </nav>
+
+        <a href="login.html" class="logout">LOGOUT</a>
+    </header>
+    <main class="dashboard">
+      <!-- Header -->
+      <div class="page-heading">
+        <div>
+          <p class="welcome">WELCOME BACK, BRYNE67</p>
+        </div>
+
+        <button class="new-order">+ NEW ORDER</button>
+    </div>
+
+      <!-- Statistics -->
+      <section class="stats">
+        <div class="stat-card">
+          <p class="label">TOTAL ORDERS</p>
+          <h2>5</h2>
+          <p class="description">All time</p>
+        </div>
+
+        <div class="stat-card">
+          <p class="label">ACTIVE ORDERS</p>
+          <h2>1</h2>
+          <p class="description">In progress</p>
+        </div>
+
+        <div class="stat-card">
+          <p class="label">TOTAL SPENT</p>
+          <h2>₱ 670.67</h2>
+          <p class="description">This month</p>
+        </div>
+      </section>
+
+      <!-- Active Orders -->
+      <section class="orders-section">
+        <div class="section-header">
+          <p>ACTIVE ORDERS</p>
+          <p>1 ITEMS</p>
+        </div>
+
+        <div class="active-order">
+
+          <div class="order-info">
+            <p class="order-id">ORD-2205</p>
+            <p class="service">WASH &amp; FOLD</p>
+          </div>
+
+          <span class="status dark">WASHING</span>
+
+          <div class="order-right">
+            <span class="eta">ETA: TODAY, 6:00 PM</span>
+            <a href="#" class="track">TRACK →</a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Order History -->
+      <section class="history-section">
+        <div class="history-title">ORDER HISTORY</div>
+
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>ORDER ID</th>
+              <th>DATE</th>
+              <th>SERVICE</th>
+              <th>WEIGHT</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td>ORD-2201</td>
+              <td>Jun 28, 2025</td>
+              <td>Wash &amp; Fold</td>
+              <td>3.5 kg</td>
+              <td>
+                <span class="table-status">DELIVERED</span>
+              </td>
+            </tr>
+
+            <tr>
+              <td>ORD-2189</td>
+              <td>Jun 20, 2025</td>
+              <td>Dry Cleaning</td>
+              <td>2.0 kg</td>
+              <td>
+                <span class="table-status">READY</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- Service Mode -->
+      <section class="service-section">
+        <div class="service-title">SERVICE MODE</div>
+
+        <div class="service-offers">
+
+            <div class="customer-service">
+                <p class="mode-title">CUSTOMER SERVICE (FULL SERVICE)</p>
+                <p class="mode-description">Drop off your items — our staff handles everything: sorting, washing, drying, and folding.</p>
+                <p class="mode-features">&#9724; Sorting & pre-treatment</p>
+                <p class="mode-features">&#9724; Washing + Drying</p>
+                <p class="mode-features">&#9724; Folding & packaging</p>
+                <p class="mode-features">&#9724; Pickup / Delivery</p>
+                <button class="mode-btn"><a href="#">BOOK CUSTOMER SERVICE</a></button>
+            </div>
+
+            <div class="self-service">
+                <p class="mode-title">Self-Service (Use Our Machines)</p>
+                <p class="mode-description">Walk in and operate our coin-operated or app-controlled washers and dryers yourself. Pay per load.</p>
+                <p class="mode-features">&#9724; Check machine availability</p>
+                <p class="mode-features">&#9724; Reserve a machine via app</p>
+                <p class="mode-features">&#9724; Pay per load (coins / GCash)</p>
+                <p class="mode-features">&#9724; No staff assistance included</p>
+                <button class="mode-btn mode-btn-right"><a href="#" class="btn-a">RESERVE A MACHINE</a></button>
+            </div>
+            </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

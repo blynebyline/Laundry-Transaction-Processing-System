@@ -1,0 +1,358 @@
+:root{
+    --section-margin-btm: 36px;
+    --border-styling: 1px solid #d2d2d2;
+    --section-bg: var(--bg-white)
+}
+
+.dashboard {
+    width: 100%;
+    min-height: 100vh;
+    padding: 25px 15px 60px;
+}
+
+section {
+    margin-bottom: var(--section-margin-btm);
+    background: var(--section-bg);
+    border: var(--border-styling);
+    overflow: hidden;
+}
+
+
+.history-title, .service-title {
+    height: 57px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-bottom: var(--border-styling);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+/* welcome */
+
+.page-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 42px;
+}
+
+.new-order {
+    background: #1d1d1d;
+    color: white;
+    border: var(--border-styling);
+    padding: 15px 25px;
+    min-width: 150px;
+    height: 42px;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.welcome {
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin: 11px 0 8px;
+}
+
+/* STATUS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: var(--section-margin-btm);
+    border: none;
+}
+
+.stat-card {
+    background: #fff;
+    border: 1px solid #d2d2d2;
+    min-height: 150px;
+    padding: 34px 24px 20px;
+}
+
+.label {
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 17px;
+}
+
+.stat-card h2 {
+    font-size: 27px;
+    font-weight: 400;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.description {
+    color: #555;
+    font-size: 12px;
+}
+
+
+/* =========================
+   ACTIVE ORDERS
+========================= */
+
+.section-header {
+    height: 47px;
+    border-bottom: var(--border-styling);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    font-size: 12px;
+}
+
+.active-order {
+    min-height: 94px;
+    padding: 0 23px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    border-bottom: var(--border-styling);
+}
+
+.active-order:last-child {
+    border-bottom: none;
+}
+
+.order-id {
+    font-size: 13px;
+    margin-bottom: 16px;
+}
+
+.service {
+    color: #666;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.status {
+    justify-self: center;
+    padding: 4px 11px;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.status.dark {
+    background: #1d1d1d;
+    color: white;
+}
+
+.order-right {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 3px;
+    white-space: nowrap;
+}
+
+.eta {
+    font-size: 11px;
+    color: #555;
+}
+
+.track {
+    color: #1e1e1e;
+    font-size: 11px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin-left: 2px;
+}
+
+
+/* =========================
+   ORDER HISTORY
+========================= */
+
+.order-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.order-table th {
+    height: 51px;
+    padding: 0 23px;
+    background: #e9e9e9;
+    text-align: left;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #666;
+}
+
+.order-table td {
+    height: 60px;
+    padding: 0 24px;
+    border-bottom: var(--border-styling);
+    font-size: 13px;
+}
+
+.order-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table-status {
+    display: inline-block;
+    border: var(--border-styling);
+    padding: 3px 10px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #666;
+}
+
+/* SERVICE SELECTION */
+
+.service-offers {
+    min-height: 280px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.customer-service,
+.self-service {
+    padding: 30px 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+.customer-service {
+    border-right: var(--border-styling);
+}
+
+.mode-title {
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-bottom: 18px;
+}
+
+.mode-description {
+    color: #555;
+    font-size: 12px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.mode-features {
+    font-size: 11px;
+    color: #444;
+    margin-bottom: 10px;
+    letter-spacing: 0.3px;
+}
+
+.mode-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 42px;
+    margin-top: auto;
+    background: #1d1d1d;
+    color: white;
+    border: 1px solid #1d1d1d;
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.mode-btn a {
+    color: white;
+}
+
+.mode-btn-right {
+    background: white;
+    border: 1px solid #1d1d1d;
+}
+
+.mode-btn-right a {
+    color: #1d1d1d;
+}
+
+.mode-btn:hover, .new-order{
+    background-color: #333;
+}
+
+.mode-btn-right:hover{
+    background-color: #f3f3f3;
+}
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .stats {
+        grid-template-columns: 1fr;
+    }
+
+    .active-order {
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        padding: 20px 23px;
+    }
+
+    .status {
+        justify-self: end;
+    }
+
+    .order-right {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+    }
+
+    .table-header {
+        grid-template-columns: 1fr 1fr 1.2fr 1fr 1fr;
+        min-width: 700px;
+    }
+
+    .history-section {
+        overflow-x: auto;
+    }
+
+    .order-table {
+        min-width: 700px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    .dashboard {
+        padding: 20px 10px 50px;
+    }
+
+    .header {
+        align-items: flex-start;
+    }
+
+    .new-order {
+        padding: 12px 15px;
+        min-width: auto;
+        font-size: 10px;
+    }
+
+    .active-order {
+        grid-template-columns: 1fr;
+    }
+
+    .status {
+        justify-self: start;
+    }
+
+    .order-right {
+        grid-column: auto;
+    }
+}
