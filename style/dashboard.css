@@ -96,9 +96,7 @@ a {
 }
 
 
-/* =========================
-   ACTIVE ORDERS
-========================= */
+/* ACTIVE ORDERS */
 
 .section-header {
     height: 47px;
@@ -168,9 +166,7 @@ a {
 }
 
 
-/* =========================
-   ORDER HISTORY
-========================= */
+/* ORDER HISTORY */
 
 .order-table {
     width: 100%;
@@ -288,9 +284,7 @@ a {
 
 
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* RESPONSIVE*/
 
 @media (max-width: 900px) {
 
