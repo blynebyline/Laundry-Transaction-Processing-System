@@ -1,7 +1,16 @@
 :root{
     --section-margin-btm: 36px;
     --border-styling: 1px solid #d2d2d2;
-    --section-bg: var(--bg-white)
+    --section-bg: var(--bg-white);
+    --color-white: #fff;
+    --color-black: #1d1d1d;
+    --color-black-hover: #333;
+    --color-border: #d2d2d2;
+    --color-text-muted: #555;
+    --color-text-soft: #666;
+    --color-text-subtle: #444;
+    --color-bg-table-head: #e9e9e9;
+    --color-bg-hover-light: #f3f3f3;
 }
 
 .dashboard {
@@ -18,7 +27,7 @@ section {
 }
 
 
-.history-title, .service-title {
+.history-title, .service-title, .machine-title {
     height: 57px;
     padding: 0 24px;
     display: flex;
@@ -30,7 +39,7 @@ section {
 
 a {
     text-decoration: none;
-    color: white;
+    color: var(--color-white);
 }
 /* welcome */
 
@@ -42,8 +51,8 @@ a {
 }
 
 .new-order {
-    background: #1d1d1d;
-    color: white;
+    background: var(--color-black);
+    color: var(--color-white);
     border: var(--border-styling);
     padding: 15px 25px;
     min-width: 150px;
@@ -71,8 +80,8 @@ a {
 }
 
 .stat-card {
-    background: #fff;
-    border: 1px solid #d2d2d2;
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
     min-height: 150px;
     padding: 34px 24px 20px;
 }
@@ -91,7 +100,7 @@ a {
 }
 
 .description {
-    color: #555;
+    color: var(--color-text-muted);
     font-size: 12px;
 }
 
@@ -127,7 +136,7 @@ a {
 }
 
 .service {
-    color: #666;
+    color: var(--color-text-soft);
     font-size: 11px;
     letter-spacing: 1px;
 }
@@ -140,8 +149,8 @@ a {
 }
 
 .status.dark {
-    background: #1d1d1d;
-    color: white;
+    background: var(--color-black);
+    color: var(--color-white);
 }
 
 .order-right {
@@ -154,11 +163,11 @@ a {
 
 .eta {
     font-size: 11px;
-    color: #555;
+    color: var(--color-text-muted);
 }
 
 .track {
-    color: #1e1e1e;
+    color: var(--color-black);
     font-size: 11px;
     font-weight: bold;
     text-decoration: underline;
@@ -177,12 +186,12 @@ a {
 .order-table th {
     height: 51px;
     padding: 0 23px;
-    background: #e9e9e9;
+    background: var(--color-bg-table-head);
     text-align: left;
     font-size: 11px;
     font-weight: bold;
     letter-spacing: 1px;
-    color: #666;
+    color: var(--color-text-soft);
 }
 
 .order-table td {
@@ -202,7 +211,7 @@ a {
     padding: 3px 10px;
     font-size: 10px;
     letter-spacing: 1px;
-    color: #666;
+    color: var(--color-text-soft);
 }
 
 /* SERVICE SELECTION */
@@ -232,7 +241,7 @@ a {
 }
 
 .mode-description {
-    color: #555;
+    color: var(--color-text-muted);
     font-size: 12px;
     line-height: 1.7;
     margin-bottom: 22px;
@@ -240,7 +249,7 @@ a {
 
 .mode-features {
     font-size: 11px;
-    color: #444;
+    color: var(--color-text-subtle);
     margin-bottom: 10px;
     letter-spacing: 0.3px;
 }
@@ -252,9 +261,9 @@ a {
     width: 100%;
     height: 42px;
     margin-top: auto;
-    background: #1d1d1d;
-    color: white;
-    border: 1px solid #1d1d1d;
+    background: var(--color-black);
+    color: var(--color-white);
+    border: 1px solid var(--color-black);
     font-family: inherit;
     font-size: 11px;
     letter-spacing: 1px;
@@ -262,26 +271,109 @@ a {
 }
 
 .mode-btn a {
-    color: white;
+    color: var(--color-white);
 }
 
 .mode-btn-right {
-    background: white;
-    border: 1px solid #1d1d1d;
+    background: var(--color-white);
+    border: 1px solid var(--color-black);
 }
 
 .mode-btn-right a {
-    color: #1d1d1d;
+    color: var(--color-black);
 }
 
-.mode-btn:hover, .new-order{
-    background-color: #333;
+.mode-btn:hover, .new-order:hover{
+    background-color: var(--color-black-hover);
 }
 
 .mode-btn-right:hover{
-    background-color: #f3f3f3;
+    background-color: var(--color-bg-hover-light);
 }
 
+
+/* MACHINE AVAILABILITY */
+
+.machine-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 24px;
+}
+
+.machine-card {
+    border: var(--border-styling);
+    padding: 24px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+}
+
+.machine-name {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+.machine-status {
+    padding: 4px 11px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    border: var(--border-styling);
+    color: var(--color-text-soft);
+}
+
+.machine-status.available {
+    background: var(--color-white);
+    color: var(--color-black);
+}
+
+.machine-status.inuse {
+    background: var(--color-black);
+    color: var(--color-white);
+    border-color: var(--color-black);
+}
+
+.machine-model {
+    color: var(--color-text-muted);
+    font-size: 11px;
+    letter-spacing: 0.3px;
+    margin-bottom: 6px;
+}
+
+.machine-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 38px;
+    margin-top: auto;
+    background: var(--color-black);
+    color: var(--color-white);
+    border: 1px solid var(--color-black);
+    font-family: inherit;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.machine-btn a {
+    color: var(--color-white);
+}
+
+.machine-btn:hover {
+    background-color: var(--color-black-hover);
+}
+
+.machine-btn-disabled,
+.machine-btn-disabled:hover {
+    background: var(--color-white);
+    color: var(--color-text-soft);
+    border: 1px solid var(--color-border);
+    cursor: not-allowed;
+}
 
 
 /* RESPONSIVE*/
@@ -319,6 +411,10 @@ a {
     .order-table {
         min-width: 700px;
     }
+
+    .machine-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 
@@ -348,5 +444,9 @@ a {
 
     .order-right {
         grid-column: auto;
+    }
+
+    .machine-grid {
+        grid-template-columns: 1fr;
     }
 }
