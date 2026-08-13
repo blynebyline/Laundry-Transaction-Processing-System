@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="/style/order.css">
+    <link rel="stylesheet" href="/style/header.css">
+    <title>New Order</title>
+</head>
+<body>
+    <header>
+        <nav class="header-nav">
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+        <a href="login.html" class="logout">LOGOUT</a>
+    </header>
+
+    <main class="order-page">
+        <form>
+            <div class="order-instructions">
+                <p>NEW LAUNDRY ORDER</p>
+                <p>Fill in the details below to place your order.</p>
+            </div>
+
+            <!-- Service Type -->
+            <section class="service-type">
+                <div class="section-title">SERVICE TYPE</div>
+
+                <div class="service-type-grid">
+
+                    <input type="radio" name="service-type" id="service-wash-fold" class="service-radio" value="wash-fold" checked>
+                    <label for="service-wash-fold" class="service-option">
+                        <span class="service-name">WASH</span>
+                        <span class="service-price">From &#8369; 60 (8KG)</span>
+                    </label>
+
+                    <input type="radio" name="service-type" id="service-dry-cleaning" class="service-radio" value="dry-cleaning">
+                    <label for="service-dry-cleaning" class="service-option">
+                        <span class="service-name">DRY</span>
+                        <span class="service-price">&#8369; 60(8KG)</span>
+                    </label>
+
+                    <input type="radio" name="service-type" id="service-express-wash" class="service-radio" value="full-service">
+                    <label for="service-express-wash" class="service-option">
+                        <span class="service-name">FULL SERVICE</span>
+                        <span class="service-price">From &#8369; 180</span>
+                    </label>
+
+                    <input type="radio" name="service-type" id="service-ironing-only" class="service-radio" value="fold-only">
+                    <label for="service-ironing-only" class="service-option">
+                        <span class="service-name">FOLD</span>
+                        <span class="service-price">From &#8369; 30(8KG)</span>
+                    </label>
+
+                </div>
+            </section>
+
+            <!-- Details -->
+            <section class="service-details">
+                <div class="section-title">LOAD DETAILS</div>
+
+                <div class="section-body">
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="weight">ESTIMATED WEIGHT (KG)</label>
+                            <div class="input-with-suffix">
+                                <input type="number" id="weight" name="weight" step="0.1" min="0" placeholder="3.5">
+                                <span class="suffix">kg</span>
+                            </div>
+                        </div>
+
+                        <div class="field">
+                            <label for="items">NUMBER OF ITEMS</label>
+                            <input type="number" id="items" name="items" min="0" placeholder="12">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="instructions">SPECIAL INSTRUCTIONS</label>
+                        <textarea id="instructions" name="instructions" rows="4" placeholder="Use hypoallergenic detergent..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pickup Schedule -->
+            <section class="service-schedule">
+                <div class="section-title">PICKUP SCHEDULE</div>
+
+                <div class="section-body">
+                    <div class="field-row">
+                        <div class="field">
+                            <label for="pickup-date">PICKUP DATE</label>
+                            <input type="date" id="pickup-date" name="pickup-date">
+                        </div>
+
+                        <div class="field">
+                            <label for="pickup-time">PICKUP TIME</label>
+                            <select id="pickup-time" name="pickup-time">
+                                <option value="" selected disabled>Select a time slot</option>
+                                <option value="8-10">8:00 AM – 10:00 AM</option>
+                                <option value="10-12">10:00 AM – 12:00 PM</option>
+                                <option value="13-15">1:00 PM – 3:00 PM</option>
+                                <option value="15-17">3:00 PM – 5:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="address">PICKUP ADDRESS</label>
+                        <input type="text" id="address" name="address" placeholder="Enter your address">
+                    </div>
+                </div>
+            </section>
+
+            <button class="submit-order"><a href="summary.html">PLACE ORDER</a></button>
+
+        </form>
+    </main>
+</body>
+</html>

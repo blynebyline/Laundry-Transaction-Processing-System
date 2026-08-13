@@ -1,0 +1,249 @@
+:root{
+    --section-margin-btm: 36px;
+    --body-bg: rgb(230, 230, 230);
+    --border-styling: 1px solid #d2d2d2;
+    --section-bg: white;
+    --color-white: #fff;
+    --color-black: #1d1d1d;
+    --color-black-hover: #333;
+    --color-border: #d2d2d2;
+    --color-text-muted: #555;
+    --color-text-soft: #666;
+    --color-text-subtle: #444;
+    --color-bg-table-head: #dcdcdc;
+    --color-bg-hover-light: #f3f3f3;
+    --opacity-value: 0.7;
+}
+
+body {
+    background-color: var(--body-bg);
+}
+
+a {
+    color: white;
+}
+
+.order-page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 40px 15px 80px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+section {
+    margin-bottom: var(--section-margin-btm);
+    background: var(--section-bg);
+    border: var(--border-styling);
+    overflow: hidden;
+}
+
+.section-title {
+    padding: 20px 24px 0;
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--color-black);
+}
+
+.section-body {
+    padding: 20px 24px 24px;
+}
+
+/* instructions */
+
+.order-instructions {
+    margin-bottom: 24px;
+}
+
+.order-instructions p:first-child {
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.order-instructions p:last-child {
+    font-size: 13px;
+    color: var(--color-text-muted);
+}
+
+/* Service */
+
+.service-type-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 20px 24px 24px;
+}
+
+.service-radio {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.service-option {
+    text-align: left;
+    background: var(--color-bg-table-head);
+    border: var(--border-styling);
+    padding: 20px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: inherit;
+    cursor: pointer;
+    min-height: 100px;
+}
+
+.service-option:hover {
+    opacity: var(--opacity-value);
+}
+
+.service-radio:checked + .service-option {
+    background: var(--color-black);
+    border-color: var(--color-black);
+}
+
+.service-radio:focus-visible + .service-option {
+    outline: 2px solid var(--color-black);
+    outline-offset: 2px;
+}
+
+.service-name {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--color-black);
+}
+
+.service-radio:checked + .service-option .service-name {
+    color: var(--color-white);
+}
+
+.service-desc {
+    font-size: 11px;
+    line-height: 1.5;
+    color: var(--color-text-subtle);
+}
+
+.service-radio:checked + .service-option .service-desc {
+    color: #cfcfcf;
+}
+
+.service-price {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-top: auto;
+}
+
+.service-radio:checked + .service-option .service-price {
+    color: #bbb;
+}
+
+/* fields */
+
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--color-black);
+}
+
+input,
+select,
+textarea {
+    background: var(--color-bg-table-head);
+    border: var(--border-styling);
+    padding: 12px 14px;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--color-black);
+    width: 100%;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #8a8a8a;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 1px solid var(--color-black);
+}
+
+.input-with-suffix {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-with-suffix input {
+    padding-right: 42px;
+}
+
+.input-with-suffix .suffix {
+    position: absolute;
+    right: 14px;
+    font-size: 12px;
+    color: var(--color-text-soft);
+    pointer-events: none;
+}
+
+/* Submit */
+
+.submit-order {
+    background: var(--color-black);
+    color: var(--color-white);
+    border: 1px solid black;
+    height: 48px;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    align-self: stretch;
+}
+
+.submit-order:hover {
+    background-color: var(--color-black-hover);
+}
+
+/* reesponsive */
+
+@media (max-width: 600px) {
+
+    .service-type-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .field-row {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
