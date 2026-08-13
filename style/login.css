@@ -16,7 +16,7 @@ body {
   border-right: 1px dashed #d6d6d6;
 
   /*
-    background:url(images/laundry.jpg) center/cover;
+    background:url(images/laundry.jpg) center/cover; can we please get a good picture of the beneficiary
     */
 }
 
@@ -128,7 +128,11 @@ button:hover{
     background-color: #f3f3f3;
 }
 
-/* A */
+/* a */
+.signin-btn a {
+  color: white;
+}
+
 a {
     text-decoration: none;
     color: black;
