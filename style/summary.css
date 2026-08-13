@@ -1,0 +1,20 @@
+:root{
+    --section-margin-btm: 36px;
+    --body-bg: rgb(230, 230, 230);
+    --border-styling: 1px solid #d2d2d2;
+    --section-bg: white;
+    --color-white: #fff;
+    --color-black: #1d1d1d;
+    --color-black-hover: #333;
+    --color-border: #d2d2d2;
+    --color-text-muted: #555;
+    --color-text-soft: #666;
+    --color-text-subtle: #444;
+    --color-bg-table-head: #dcdcdc;
+    --color-bg-hover-light: #f3f3f3;
+    --opacity-value: 0.7;
+}
+
+body {
+    background-color: var(--body-bg);
+}
