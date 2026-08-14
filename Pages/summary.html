@@ -13,8 +13,71 @@
         <nav class="header-nav">
             <a href="order.html">EDIT ORDER</a>
         </nav>
-
+ 
         <a href="login.html" class="logout">LOGOUT</a>
     </header>
+ 
+    <main>
+        <h2>Order Summary</h2>
+        <form action="" method="post">
+        <section>
+            <h3>SERVICE DETAILS</h3>
+            <div class="summary-service-details">
+                <div class="service-title service-p">
+                    <p>SERVICE TYPE</p>
+                    <p>ESTIMATED WEIGHT</p>
+                    <p>NUMBER OF ITEMS</p>
+                    <p>PICKUP DATE</p>
+                    <p>TIME SLOT</p>
+                    <p>DELIVERY OPTION</p>
+                </div>
+                <div class="service-detail service-p">
+                    <p>WASH</p>
+                    <p>15KG</p>
+                    <p>20</p>
+                    <p>AUGUST 15, 2026</p>
+                    <p>1:00 - 3:00 PM</p>
+                    <p>PICKUP   </p>
+                </div>
+            </div>
+ 
+            <hr>
+ 
+            <!-- THIS WILL ONLY SHOW IF IF THE USER PICKS THE DELIVER OPTION-->
+             <div class="summary-address-details service-p">
+                <h4>Address</h4>
+                <p>123, Sample St., Brgy. 1, Manila, Metro Manila</p>
+                <p>Landmark: Near Barangay</p>
+             </div>
+ 
+             <hr>
+             <h4 class="cost-breakdown-title">Cost Breakdown</h4>
+             <div class="summary-total">
+                <div class="service-title service-p">
+                    <p>SERVICE TYPE: (WASH)</p>
+                    <p>WEIGHT</p>
+                </div>
+                <div class="service-detail service-p">
+                    <p>&#8369;60 per 8KG</p>
+                    <p>15KG</p>
+                </div>
+             </div>
+             <hr>
+             <div class="summary-total">
+                <div class="service-p">
+                    <p>TOTAL AMOUNT</p>
+                </div>
+                <div class="service-p">
+                    <p>&#8369; 120</p>
+                </div>
+             </div>
+             <hr>
+ 
+             <button class="submit-order"><a href="track.html">PLACE ORDER</a></button>
+ 
+ 
+        </section>
+        </form>
+    </main>
 </body>
 </html>
