@@ -18,11 +18,22 @@
     </header>
 
     <main class="order-page">
-        <form>
+        <form action="summary.html">
             <div class="order-instructions">
                 <p>NEW LAUNDRY ORDER</p>
                 <p>Fill in the details below to place your order.</p>
             </div>
+
+            <section class="select-mode">
+                <div class="section-title">SELECT MODE</div>
+                <div class="mode-toggle">
+                    <input type="radio" name="mode" id="select-customer-service" class="mode-radio" value="customer-service" checked>
+                    <label for="select-customer-service" class="mode-option">CUSTOMER SERVICE</label>
+
+                    <input type="radio" name="mode" id="select-self-service" class="mode-radio" value="self-service">
+                    <label for="select-self-service" class="mode-option">SELF SERVICE</label>
+                </div>
+            </section>
 
             <!-- Service Type -->
             <section class="service-type">
@@ -114,7 +125,7 @@
                 </div>
             </section>
 
-            <button class="submit-order"><a href="summary.html">REVIEW ORDER</a></button>
+            <button type="submit" class="submit-order">REVIEW ORDER</button>
 
         </form>
     </main>
