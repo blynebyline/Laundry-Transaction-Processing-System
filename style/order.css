@@ -15,10 +15,6 @@
     --opacity-value: 0.7;
 }
 
-body {
-    background-color: var(--body-bg);
-}
-
 a {
     color: white;
 }

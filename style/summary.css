@@ -23,10 +23,7 @@
     color: white;
 }
 
-body {
-    background-color: var(--body-bg);
-}
-
+/* TEMPORARY REMOVE IT WHEN ITS TIME TO USE JS OR PHP */
 main{
     display: flex;
     justify-content: center;
@@ -46,7 +43,6 @@ main h2 {
 section {
     width: 700px;
     max-width: 100%;
-    padding: 0;
     border: var(--border-styling);
     background-color: var(--color-white);
     overflow: hidden;
@@ -122,6 +118,12 @@ hr {
     font-size: 16px;
 }
 
+#total-amount{
+    font-size: 1.5em;
+    font-weight: 600;
+    color: red;
+}
+
 .submit-order {
     display: flex;
     align-items: center;
@@ -131,7 +133,6 @@ hr {
     border: 1px solid var(--color-black);
     height: 48px;
     width: calc(100% - 48px);
-    font-family: inherit;
     font-size: 12px;
     letter-spacing: 1px;
     cursor: pointer;
@@ -143,13 +144,9 @@ hr {
     background-color: var(--color-black-hover);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
 
-    .summary-service-details, .summary-total {
-        gap: 10px;
-    }
-
-    .submit-order {
-        margin: 20px 15px 20px;
+    section {
+        width: 100%;
     }
 }

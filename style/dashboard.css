@@ -15,10 +15,6 @@
     --color-table-title: black;
 }
 
-body{ 
-    background-color: var(--body-bg);
-}
-
 .dashboard {
     width: 100%;
     min-height: 100vh;
