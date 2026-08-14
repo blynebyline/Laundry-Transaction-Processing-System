@@ -1,0 +1,201 @@
+:root{
+    --section-margin-btm: 36px;
+    --body-bg: rgb(230, 230, 230);
+    --border-styling: 1px solid #d2d2d2;
+    --section-text-margin: 12px;
+    --section-bg: white;
+    --color-white: #fff;
+    --color-black: #1d1d1d;
+    --color-black-hover: #333;
+    --color-border: #d2d2d2;
+    --color-text-muted: #555;
+    --color-text-soft: #666;
+    --color-text-subtle: #444;
+    --color-bg-table-head: #dcdcdc;
+    --color-bg-hover-light: #f3f3f3;
+    --color-upcoming: #b5b5b5;
+    --opacity-value: 0.7;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--body-bg);
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 40px 15px 80px;
+}
+
+main h2 {
+    margin-bottom: var(--section-margin-btm);
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--color-black);
+}
+
+
+section {
+    width: 700px;
+    max-width: 100%;
+    border: var(--border-styling);
+    background-color: var(--color-white);
+    overflow: hidden;
+    padding: 24px;
+    margin-bottom: var(--section-margin-btm);
+}
+
+.order-info{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 16px;
+}
+
+.gray-small {
+    color: var(--color-text-soft);
+    font-size: 11px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.order-id p:last-child,
+.order-service p:last-child,
+.order-time p:last-child {
+    font-size: 16px;
+    color: var(--color-black);
+}
+
+/* Order Status */
+
+.status-heading {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--color-text-soft);
+    margin-bottom: 24px;
+}
+
+.status-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.status-step {
+    display: flex;
+    gap: 16px;
+}
+
+.step-track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.step-marker {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    display: block;
+    object-fit: contain;
+}
+
+.step-line {
+    flex: 1;
+    width: 1px;
+    margin: 4px 0;
+    background-color: var(--color-black);
+}
+
+.status-step:not(.done) .step-line {
+    width: 0;
+    background: none;
+    border-left: 1px dashed var(--color-border);
+}
+
+.step-content {
+    flex: 1;
+    padding-bottom: 28px;
+}
+
+.status-step:last-child .step-content {
+    padding-bottom: 0;
+}
+
+.step-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 6px;
+}
+
+.step-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--color-black);
+}
+
+.step-date {
+    font-size: 11px;
+    color: var(--color-text-soft);
+    white-space: nowrap;
+}
+
+.step-desc {
+    font-size: 12px;
+    color: var(--color-text-muted);
+}
+
+.status-step.upcoming .step-title,
+.status-step.upcoming .step-desc,
+.status-step.upcoming .step-date {
+    color: var(--color-upcoming);
+}
+
+/* Progress bar (drying in progress) */
+
+.step-progress {
+    margin-top: 12px;
+    height: 4px;
+    width: 100%;
+    background-color: var(--color-border);
+}
+
+.step-progress-bar {
+    height: 100%;
+    width: 62%;
+    background-color: var(--color-black);
+}
+
+@media (max-width: 600px) {
+
+    main {
+        padding: 24px 12px 50px;
+    }
+
+    main h2 {
+        font-size: 17px;
+    }
+
+    section {
+        padding: 16px;
+    }
+
+    .order-info {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .step-row {
+        flex-direction: column;
+        gap: 2px;
+    }
+}

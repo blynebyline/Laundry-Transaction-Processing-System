@@ -3,9 +3,117 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="/style/track.css">
+    <link rel="stylesheet" href="/style/header.css">
+    <title>Track Order</title>
 </head>
 <body>
-    
+    <header>
+        <nav class="header-nav">
+            <a href="dashboard.html">BACK TO DASHBOARD</a>
+        </nav>
+ 
+        <a href="login.html" class="logout">LOGOUT</a>
+    </header>
+ 
+    <main>
+        <h2>ORDER TRACKING</h2>
+        <!-- Order info -->
+        <section class="order-info">
+            <div class="order-id">
+                <p class="gray-small">Order ID</p>
+                <p>ORD-6767</p>
+            </div>
+            <div class="order-service">
+                <p class="gray-small">Service</p>
+                <p>Wash</p>
+            </div>
+            <div class="order-time">
+                <p class="gray-small">Est. Delivery</p>
+                <p>Today, 1:00 PM</p>
+            </div>
+        </section>
+        <!-- Order Status-->
+        <section class="order-status">
+            <p class="status-heading">ORDER STATUS</p>
+
+            <ol class="status-timeline">
+
+                <li class="status-step done">
+                    <div class="step-track">
+                        <img class="step-marker" src="/icons/one.png" alt="Completed">
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-row">
+                            <p class="step-title">RECEIVED</p>
+                            <p class="step-date">JUN 30 &middot; 9:14 AM</p>
+                        </div>
+                        <p class="step-desc">Order received and confirmed</p>
+                    </div>
+                </li>
+
+                <li class="status-step done">
+                    <div class="step-track">
+                        <img class="step-marker" src="/icons/two.png" alt="Completed">
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-row">
+                            <p class="step-title">WASHING</p>
+                            <p class="step-date">JUN 30 &middot; 11:30 AM</p>
+                        </div>
+                        <p class="step-desc">Your items are being washed</p>
+                    </div>
+                </li>
+
+                <li class="status-step current">
+                    <div class="step-track">
+                        <img class="step-marker" src="/icons/three.png" alt="Step 3">
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-row">
+                            <p class="step-title">DRYING &mdash; IN PROGRESS</p>
+                            <p class="step-date">JUN 30 &middot; 1:00 PM</p>
+                        </div>
+                        <p class="step-desc">Items are in the dryer</p>
+                        <div class="step-progress">
+                            <div class="step-progress-bar"></div>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="status-step upcoming">
+                    <div class="step-track">
+                        <img class="step-marker" src="/icons/four.png" alt="Step 4">
+                        <div class="step-line"></div>
+                    </div>
+                    <div class="step-content">
+                        <div class="step-row">
+                            <p class="step-title">READY</p>
+                            <p class="step-date">&mdash;</p>
+                        </div>
+                        <p class="step-desc">Order packed and ready for delivery</p>
+                    </div>
+                </li>
+
+                <li class="status-step upcoming">
+                    <div class="step-track">
+                        <img class="step-marker" src="/icons/five.png" alt="Step 5">
+                    </div>
+                    <div class="step-content">
+                        <div class="step-row">
+                            <p class="step-title">DELIVERED</p>
+                            <p class="step-date">&mdash;</p>
+                        </div>
+                        <p class="step-desc">Order successfully delivered</p>
+                    </div>
+                </li>
+
+            </ol>
+        </section>
+    </main>
 </body>
 </html>
