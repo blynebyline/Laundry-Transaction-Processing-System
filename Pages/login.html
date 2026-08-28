@@ -1,57 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style/global.css">
-    <link rel="stylesheet" href="/style/login.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/style/global.css" />
+    <link rel="stylesheet" href="/style/login.css" />
     <title>Login</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="login-container">
+      <div class="left-panel"></div>
 
-    <div class="left-panel">
-        
-    </div>
-
-    <!-- Right Side -->
-    <div class="right-panel">
-
+      <!-- Right Side -->
+      <div class="right-panel">
         <div class="login-box">
+          <h1>WELCOME!</h1>
+          <br>
+          <br>
 
-            <div class="tabs">
-                <button class="active">LOGIN</button>
-                <button><a href="register.html">REGISTER</a></button>
+          <p class="subtitle">SIGN IN TO YOUR ACCOUNT</p>
+
+          <form>
+            <label>Email Address</label>
+            <input type="email" placeholder="you@email.com" />
+
+            <label>Password</label>
+            <input type="password" placeholder="••••••••" />
+
+            <div class="options">
+              <label class="remember">
+                <input type="checkbox" /> Remember Me
+              </label>
+
+              <a href="#">Forgot Password?</a>
             </div>
 
-            <p class="subtitle">SIGN IN TO YOUR ACCOUNT</p>
-
-            <form>
-
-                <label>Email Address</label>
-                <input
-                    type="email"
-                    placeholder="you@email.com"
-                >
-
-                <label>Password</label>
-                <input type="password" placeholder="••••••••">
-
-                <div class="options">
-                    <label class="remember">
-                        <input type="checkbox"> Remember Me
-                    </label>
-
-                    <a href="#">Forgot Password?</a>
-                </div>
-
-                <button class="signin-btn"><a href="dashboard.html">SIGN IN</a></button>
-            </form>
-
+            <button class="signin-btn">
+              <a href="dashboard.html">SIGN IN</a>
+            </button>
+          </form>
         </div>
-
+      </div>
     </div>
-
-</div>
-</body>
+  </body>
 </html>

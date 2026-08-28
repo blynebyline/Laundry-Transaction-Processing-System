@@ -62,7 +62,7 @@ section {
     color: var(--color-text-muted);
 }
 
-/* Select either self service or customer service */
+/* Select pickup, delivery, or self service */
 
 .mode-toggle {
     display: flex;
@@ -91,7 +91,7 @@ section {
     cursor: pointer;
 }
 
-.mode-option:first-of-type {
+.mode-option:not(:last-of-type) {
     border-right: var(--border-styling);
 }
 

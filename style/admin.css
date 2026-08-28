@@ -102,6 +102,11 @@ main {
     cursor: pointer;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .quick-action-btn:hover {
     background: var(--color-bg-table-head);
 }

@@ -1,0 +1,112 @@
+:root {
+    --delete-bg: #c0392b;
+    --update-bg: rgb(78, 78, 255);
+}
+
+/* get the payment */
+.payment-toggle {
+    display: flex;
+    border: var(--border-styling);
+    margin: 16px 24px 24px;
+    overflow: hidden;
+}
+ 
+.payment-radio {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+ 
+.payment-option {
+    flex: 1;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: var(--color-text-soft);
+    background: var(--color-bg-table-head);
+    cursor: pointer;
+}
+ 
+.payment-option:first-of-type {
+    border-right: var(--border-styling);
+}
+ 
+.payment-radio:checked + .payment-option.paid {
+    background: #1c7a3a;
+    color: var(--color-white);
+}
+ 
+.payment-radio:checked + .payment-option.unpaid {
+    background: #c0392b;
+    color: var(--color-white);
+}
+ 
+.payment-radio:focus-visible + .payment-option {
+    outline: 2px solid var(--color-black);
+    outline-offset: -2px;
+}
+ 
+.payment-option:hover {
+    opacity: var(--opacity-value);
+}
+ 
+.payment-radio:checked + .payment-option:hover {
+    opacity: 1;
+}
+
+
+/*  Cancel, Delete, Update buttons  */
+
+.action-row {
+    display: flex;
+    gap: 16px;
+}
+
+.action-btn {
+    flex: 1;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-size: 12px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.btn-cancel {
+    background: var(--color-white);
+    color: var(--color-black);
+    border: var(--border-styling);
+}
+
+.btn-cancel:hover {
+    background: var(--color-bg-hover-light);
+}
+
+.btn-update {
+    background: var(--update-bg);
+    color: var(--color-white);
+    border: 1px solid var(--update-bg);
+}
+
+.btn-delete {
+    background: var(--delete-bg);
+    color: white;
+    border: 1px solid #c0392b;
+}
+
+.btn-delete:hover, .btn-update:hover {
+    opacity: .7;
+}
+
+@media (max-width: 600px) {
+    .action-row {
+        flex-direction: column;
+    }
+}

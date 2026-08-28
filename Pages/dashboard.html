@@ -1,203 +1,185 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/global.css" />
-    <link rel="stylesheet" href="/style/dashboard.css" />
+    <link rel="stylesheet" href="/style/admin.css" />
     <link rel="stylesheet" href="/style/header.css" />
-    <title>Customer Dashboard</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="/style/table.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Admin Dashboard</title>
+</head>
+<body>
     <header>
         <nav class="header-nav">
-            <a href="#">MY ORDERS</a>
-            <a href="track.html">TRACK</a>
+            <p id="header-admin">ADMIN</p>
+
         </nav>
 
         <a href="login.html" class="logout">LOGOUT</a>
     </header>
-    <main class="dashboard">
-      <!-- Header -->
-      <div class="page-heading">
-        <div>
-          <p class="welcome">WELCOME BACK, BRYNE67</p>
-        </div>
-
-        <button class="new-order"><a href="order.html">+ NEW ORDER</a></button>
-    </div>
-
-      <!-- Statistics -->
-      <section class="stats">
+    <main>
+        <!-- STATS -->
+        <section class="stats">
         <div class="stat-card">
           <p class="label">TOTAL ORDERS</p>
-          <h2>5</h2>
+          <h2>67</h2>
           <p class="description">All time</p>
         </div>
 
         <div class="stat-card">
           <p class="label">ACTIVE ORDERS</p>
-          <h2>1</h2>
+          <h2>5</h2>
           <p class="description">In progress</p>
         </div>
 
         <div class="stat-card">
-          <p class="label">TOTAL SPENT</p>
-          <h2>₱ 670.67</h2>
+          <p class="label">REVENUE TODAY</p>
+          <h2>&#8369; 670.67</h2>
+          <p class="description">This month</p>
+        </div>
+
+        <div class="stat-card">
+          <p class="label">AVG ORDER VALUE</p>
+          <h2>&#8369; 180</h2>
           <p class="description">This month</p>
         </div>
       </section>
 
-      <!-- Active Orders -->
+      <!-- TABLE for customers -->
       <section class="orders-section">
-        <div class="section-header">
-          <p>ACTIVE ORDERS</p>
-          <p>1 ITEMS</p>
+
+        <div class="table-toolbar">
+            <div class="filter-tabs">
+                <span class="filter-label">ALL ORDERS</span>
+                <button type="button" class="filter-btn active">ALL</button>
+                <button type="button" class="filter-btn">RECEIVED</button>
+                <button type="button" class="filter-btn">WASHING</button>
+                <button type="button" class="filter-btn">DRYING</button>
+                <button type="button" class="filter-btn">READY</button>
+                <button type="button" class="filter-btn">DELIVERED</button>
+            </div>
+
+            <input type="text" class="search-orders" placeholder="Search orders">
         </div>
 
-        <div class="active-order">
-
-          <div class="order-info">
-            <p class="order-id">ORD-2205</p>
-            <p class="service">WASH &amp; FOLD</p>
-          </div>
-
-          <span class="status dark">WASHING</span>
-
-          <div class="order-right">
-            <span class="eta">ETA: TODAY, 6:00 PM</span>
-            <a href="#" class="track">TRACK →</a>
-          </div>
-
-        </div>
-      </section>
-
-      <!-- Order History -->
-      <section class="history-section">
-        <div class="history-title">ORDER HISTORY</div>
-
-        <table class="order-table">
-          <thead>
-            <tr>
-              <th>ORDER ID</th>
-              <th>DATE</th>
-              <th>SERVICE</th>
-              <th>WEIGHT</th>
-              <th>STATUS</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <tr>
-              <td>ORD-2201</td>
-              <td>Jun 28, 2025</td>
-              <td>Wash &amp; Fold</td>
-              <td>3.5 kg</td>
-              <td>
-                <span class="table-status">DELIVERED</span>
-              </td>
-            </tr>
-
-            <tr>
-              <td>ORD-2189</td>
-              <td>Jun 20, 2025</td>
-              <td>Dry Cleaning</td>
-              <td>2.0 kg</td>
-              <td>
-                <span class="table-status">READY</span>
-              </td>
-            </tr>
-          </tbody>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>ORDER ID</th>
+                    <th>CUSTOMER</th>
+                    <th>SERVICE</th>
+                    <th>WEIGHT</th>
+                    <th>AMOUNT</th>
+                    <th>DATE</th>
+                    <th>ORDER STATUS</th>
+                    <th>PAYMENT STATUS</th>
+                    <th>ACTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>ORD-2205</td>
+                    <td>Bryne Arriola</td>
+                    <td>Wash</td>
+                    <td>3.5 kg</td>
+                    <td>&#8369; 80</td>
+                    <td>Aug 3</td>
+                    <td><span class="status-text washing">Washing</span></td>
+                    <td><span class="payment-text paid">Paid</span></td>
+                    <td><a href="view.html" class="action-link">VIEW</a> <a href="update.html" class="action-link">UPDATE</a></td>
+                </tr>
+                <tr>
+                    <td>ORD-2204</td>
+                    <td>Acie Enriquez</td>
+                    <td>Dry</td>
+                    <td>2.0 kg</td>
+                    <td>&#8369; 60</td>
+                    <td>Aug 3</td>
+                    <td><span class="status-text pending">Pending</span></td>
+                    <td><span class="payment-text unpaid">Unpaid</span></td>
+                    <td><a href="view.html" class="action-link">VIEW</a> <a href="update.html" class="action-link">UPDATE</a></td>
+                </tr>
+                <tr>
+                    <td>ORD-2203</td>
+                    <td>Richard Aquino</td>
+                    <td>Full Service</td>
+                    <td>5.0 kg</td>
+                    <td>&#8369; 180</td>
+                    <td>Aug 2</td>
+                    <td><span class="status-text finished">Finished</span></td>
+                    <td><span class="payment-text paid">Paid</span></td>
+                    <td><a href="view.html" class="action-link">VIEW</a> <a href="update.html" class="action-link">UPDATE</a></td>
+                </tr>
+                <tr>
+                    <td>ORD-2202</td>
+                    <td>RR Prince</td>
+                    <td>Full Service</td>
+                    <td>1.5 kg</td>
+                    <td>&#8369; 180</td>
+                    <td>Aug 2</td>
+                    <td><span class="status-text pending">Pending</span></td>
+                    <td><span class="payment-text unpaid">Unpaid</span></td>
+                    <td><a href="view.html" class="action-link">VIEW</a> <a href="update.html" class="action-link">UPDATE</a></td>
+                </tr>
+                <tr>
+                    <td>ORD-2201</td>
+                    <td>Adrian Tolentino</td>
+                    <td>Full Service</td>
+                    <td>4.0 kg</td>
+                    <td>&#8369; 180</td>
+                    <td>July 30</td>
+                    <td><span class="status-text finished">Finished</span></td>
+                    <td><span class="payment-text paid">Paid</span></td>
+                    <td><a href="view.html" class="action-link">VIEW</a> <a href="update.html" class="action-link">UPDATE</a></td>
+                </tr>
+                <tr>
+                    <td>ORD-2200</td>
+                    <td>Reniel Marcaida</td>
+                    <td>Full Service</td>
+                    <td>3.0 kg</td>
+                    <td>&#8369; 180</td>
+                    <td>July 31</td>
+                    <td><span class="status-text finished">Finished</span></td>
+                    <td><span class="payment-text paid">Paid</span></td>
+                    <td><a href="view.html" class="action-link">VIEW</a> <a href="update.html" class="action-link">UPDATE</a></td>
+                </tr>
+            </tbody>
         </table>
-      </section>
 
-      <!-- Service Mode -->
-      <section class="service-section">
-        <div class="service-title">SERVICE MODE</div>
-
-        <div class="service-offers">
-
-            <div class="customer-service">
-                <p class="mode-title">CUSTOMER SERVICE</p>
-                <p class="mode-description">Drop off your items — our staff handles everything: sorting, washing, drying, and folding.</p>
-                <p class="mode-features">&#9724; Sorting & pre-treatment</p>
-                <p class="mode-features">&#9724; Washing + Drying</p>
-                <p class="mode-features">&#9724; Folding & packaging</p>
-                <p class="mode-features">&#9724; Pickup / Delivery</p>
-                <button class="mode-btn"><a href="order.html">BOOK CUSTOMER SERVICE</a></button>
-            </div>
-
-            <div class="self-service">
-                <p class="mode-title">Self-Service (Use Our Machines)</p>
-                <p class="mode-description">Walk in and operate our coin-operated or app-controlled washers and dryers yourself. Pay per load.</p>
-                <p class="mode-features">&#9724; Check machine availability</p>
-                <p class="mode-features">&#9724; Reserve a machine via app</p>
-                <p class="mode-features">&#9724; Pay per load (coins / GCash)</p>
-                <p class="mode-features">&#9724; No staff assistance included</p>
-                <button class="mode-btn mode-btn-right"><a href="#" class="btn-a">RESERVE A MACHINE</a></button>
-            </div>
+        <div class="table-footer">
+            <p class="showing-text">SHOWING 6 OF 6 ORDERS</p>
+            <div class="pages">
+                <button type="button" class="page-btn">&larr;</button>
+                <button type="button" class="page-btn active">1</button>
+                <button type="button" class="page-btn">2</button>
+                <button type="button" class="page-btn">3</button>
+                <button type="button" class="page-btn">&rarr;</button>
             </div>
         </div>
+
       </section>
 
-      <!-- Machine -->
-      <section class="machine-section">
-        <div class="machine-title">MACHINE AVAILABILITY</div>
- 
-        <div class="machine-grid">
- 
-          <div class="machine-card">
-            <p class="machine-name">M1</p>
-            <span class="machine-status available">AVAILABLE</span>
-            <p class="machine-model">LG Washer 8kg</p>
-            <button class="machine-btn"><a href="#">RESERVE</a></button>
-          </div>
- 
-          <div class="machine-card">
-            <p class="machine-name">M2</p>
-            <span class="machine-status inuse">IN USE</span>
-            <p class="machine-model">Samsung Dryer 10kg</p>
-            <button class="machine-btn machine-btn-disabled" disabled>IN USE</button>
-          </div>
- 
-          <div class="machine-card">
-            <p class="machine-name">M3</p>
-            <span class="machine-status available">AVAILABLE</span>
-            <p class="machine-model">LG Washer 8kg</p>
-            <button class="machine-btn"><a href="#">RESERVE</a></button>
-          </div>
- 
-          <div class="machine-card">
-            <p class="machine-name">M4</p>
-            <span class="machine-status inuse">IN USE</span>
-            <p class="machine-model">Samsung Dryer 10kg</p>
-            <button class="machine-btn machine-btn-disabled" disabled>IN USE</button>
-          </div>
+      <!-- Other buttons revenue and quick action -->
+      <section class="bottom-grid">
 
-          <div class="machine-card">
-            <p class="machine-name">M5</p>
-            <span class="machine-status available">AVAILABLE</span>
-            <p class="machine-model">LG Washer 8kg</p>
-            <button class="machine-btn"><a href="#">RESERVE</a></button>
-          </div>
-
-          <div class="machine-card">
-            <p class="machine-name">M6</p>
-            <span class="machine-status available">AVAILABLE</span>
-            <p class="machine-model">LG Washer 8kg</p>
-            <button class="machine-btn"><a href="#">RESERVE</a></button>
-          </div>
-
-          <div class="machine-card">
-            <p class="machine-name">M7</p>
-            <span class="machine-status available">AVAILABLE</span>
-            <p class="machine-model">LG Washer 8kg</p>
-            <button class="machine-btn"><a href="#">RESERVE</a></button>
-          </div>
- 
+        <div class="panel revenue-panel">
+            <p class="panel-title">REVENUE OVERVIEW &mdash; LAST 3 MONTHS</p>
+            <div class="revenue-chart">
+                <canvas id="revenueChart"></canvas>
+            </div>
         </div>
-      </section>
 
+        <div class="panel quick-actions-panel">
+            <p class="panel-title">QUICK ACTIONS</p>
+            <button type="button" class="quick-action-btn"><a href="order.html">Create Order</a></button>
+            <button type="button" class="quick-action-btn"><a href="machine.html">View Machines</a></button>
+        </div>
+
+      </section>
     </main>
-  </body>
+
+    <script src="/script/dashboard.js"></script>
+</body>
 </html>

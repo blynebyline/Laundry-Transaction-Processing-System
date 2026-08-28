@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/global.css" />
+    <link rel="stylesheet" href="/style/admin.css" />
+    <link rel="stylesheet" href="/style/header.css" />
+    <link rel="stylesheet" href="/style/machine.css" />
+    <title>Machine Status</title>
+</head>
+<body>
+    <header>
+        <nav class="header-nav">
+            <a href="dashboard.html">Dashboard</a>
+        </nav>
+
+        <a href="login.html" class="logout">LOGOUT</a>
+    </header>
+
+    <main>
+        <!-- STATS -->
+        <section class="stats">
+            <div class="stat-card">
+                <p class="label">TOTAL MACHINES</p>
+                <h2>12</h2>
+            </div>
+
+            <div class="stat-card">
+                <p class="label">AVAILABLE</p>
+                <h2>5</h2>
+
+            </div>
+
+            <div class="stat-card">
+                <p class="label">IN USE</p>
+                <h2>2</h2>
+               
+            </div>
+
+            <div class="stat-card">
+                <p class="label">MAINTENANCE</p>
+                <h2>1</h2>
+            </div>
+        </section>
+
+        <!-- WASHERS -->
+        <section class="machine-section">
+            <div class="section-title">WASHERS</div>
+
+            <div class="machine-grid">
+
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">WASHER 1</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">8KG capacity</p>
+                </div>
+
+                <div class="machine-card in-use">
+                    <div class="machine-card-top">
+                        <span class="machine-name">WASHER 2</span>
+                        <span class="machine-status in-use">In Use</span>
+                    </div>
+                    <p class="machine-meta">8KG capacity &middot; Est. done 2:40 PM</p>
+                </div>
+
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">WASHER 3</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">8KG capacity</p>
+                </div>
+
+                <div class="machine-card maintenance">
+                    <div class="machine-card-top">
+                        <span class="machine-name">WASHER 4</span>
+                        <span class="machine-status maintenance">Maintenance</span>
+                    </div>
+                    <p class="machine-meta">8KG capacity &middot; Out of service</p>
+                </div>
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">WASHER 5</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">8KG capacity</p>
+                </div>
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">WASHER 6</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">8KG capacity</p>
+                </div>
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">WASHER 7</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">8KG capacity</p>
+                </div>
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">WASHER 8</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">8KG capacity</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DRYERS -->
+        <section class="machine-section">
+            <div class="section-title">DRYERS</div>
+
+            <div class="machine-grid">
+
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">DRYER 1</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">10KG capacity</p>
+                </div>
+
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">DRYER 2</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">10KG capacity</p>
+                </div>
+
+                <div class="machine-card in-use">
+                    <div class="machine-card-top">
+                        <span class="machine-name">DRYER 3</span>
+                        <span class="machine-status in-use">In Use</span>
+                    </div>
+                    <p class="machine-meta">10KG capacity &middot; Est. done 3:10 PM</p>
+                </div>
+
+                <div class="machine-card available">
+                    <div class="machine-card-top">
+                        <span class="machine-name">DRYER 4</span>
+                        <span class="machine-status available">Available</span>
+                    </div>
+                    <p class="machine-meta">10KG capacity</p>
+                </div>
+
+            </div>
+        </section>
+    </main>
+</body>
+</html>

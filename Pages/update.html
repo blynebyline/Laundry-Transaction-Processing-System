@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/global.css">
     <link rel="stylesheet" href="/style/order.css">
+    <link rel="stylesheet" href="/style/update.css">
     <link rel="stylesheet" href="/style/header.css">
-    <title>New Order</title>
+    <title>Update Order</title>
 </head>
 <body>
     <header>
@@ -20,27 +21,48 @@
     <main class="order-page">
         <form action="dashboard.html">
             <div class="order-instructions">
-                <p>NEW LAUNDRY ORDER</p>
-                <p>Fill in the details below to place your order.</p>
+                <p>UPDATE ORDER</p>
+                <p>Modify the order details below.</p>
             </div>
+
+            <section class="customer">
+                <div class="section-title">ORDER ID</div>
+                <div class="section-body">
+                    <div class="field">
+                        <label for="orderId">ORDER ID</label>
+                        <input type="text" name="orderId" id="orderId" value="ORD-2205" readonly>
+                    </div>
+                </div>
+            </section>
 
             <section class="customer">
                 <div class="section-title">CUSTOMER DETAILS</div>
                 <div class="section-body">
                     <div class="field">
                         <label for="customerName">CUSTOMER NAME</label>
-                        <input type="text" name="customerName" id="customerName" placeholder="Enter customer name">
+                        <input type="text" name="customerName" id="customerName" value="Bryne Arriola">
                     </div>
+                </div>
+            </section>
+
+            <section class="payment-status">
+                <div class="section-title">PAYMENT STATUS</div>
+                <div class="payment-toggle">
+                    <input type="radio" name="payment" id="payment-unpaid" class="payment-radio" value="unpaid" checked>
+                    <label for="payment-unpaid" class="payment-option unpaid">UNPAID</label>
+
+                    <input type="radio" name="payment" id="payment-paid" class="payment-radio" value="paid">
+                    <label for="payment-paid" class="payment-option paid">PAID</label>
                 </div>
             </section>
 
             <section class="select-mode">
                 <div class="section-title">SELECT MODE</div>
                 <div class="mode-toggle">
-                    <input type="radio" name="mode" id="mode-pickup" class="mode-radio" value="pickup" checked>
+                    <input type="radio" name="mode" id="mode-pickup" class="mode-radio" value="pickup">
                     <label for="mode-pickup" class="mode-option">PICKUP</label>
 
-                    <input type="radio" name="mode" id="mode-delivery" class="mode-radio" value="delivery">
+                    <input type="radio" name="mode" id="mode-delivery" class="mode-radio" value="delivery" checked>
                     <label for="mode-delivery" class="mode-option">DELIVERY</label>
 
                     <input type="radio" name="mode" id="mode-self-service" class="mode-radio" value="self-service">
@@ -48,8 +70,8 @@
                 </div>
             </section>
 
-            <!-- Service Type (hidden for self-service; service type is implied) -->
-            <section class="service-type" id="service-type-section">
+            <!-- Service Type -->
+            <section class="service-type">
                 <div class="section-title">SERVICE TYPE</div>
 
                 <div class="service-type-grid">
@@ -81,40 +103,6 @@
                 </div>
             </section>
 
-            <section class="machines-select" id="machines-section">
-                <div class="section-title">SELECT MACHINES</div>
-
-                <div class="section-body">
-                    <div class="field-row">
-                        <div class="field">
-                            <label for="washer-count">WASHERS</label>
-                            <select id="washer-count" name="washer-count">
-                                <option value="0">None</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                            </select>
-                        </div>
-
-                        <div class="field">
-                            <label for="dryer-count">DRYERS</label>
-                            <select id="dryer-count" name="dryer-count">
-                                <option value="0" selected>None</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <!-- Details -->
             <section class="service-details">
                 <div class="section-title">LOAD DETAILS</div>
@@ -124,14 +112,14 @@
                         <div class="field">
                             <label for="weight">ESTIMATED WEIGHT (KG)</label>
                             <div class="input-with-suffix">
-                                <input type="number" id="weight" name="weight" step="0.1" min="0" placeholder="3.5">
+                                <input type="number" id="weight" name="weight" step="0.1" min="0" value="3.5">
                                 <span class="suffix">kg</span>
                             </div>
                         </div>
 
                         <div class="field">
                             <label for="items">NUMBER OF ITEMS</label>
-                            <input type="number" id="items" name="items" min="0" placeholder="12">
+                            <input type="number" id="items" name="items" min="0" value="20">
                         </div>
                     </div>
 
@@ -142,24 +130,23 @@
                 </div>
             </section>
 
-            <!-- Schedule (hidden for self-service; no date, no address) -->
-            <section class="service-schedule" id="schedule-section">
-                <div class="section-title" id="schedule-title">PICKUP SCHEDULE</div>
+            <!-- Schedule -->
+            <section class="service-schedule">
+                <div class="section-title" id="schedule-title">DELIVERY SCHEDULE</div>
 
                 <div class="section-body">
                     <div class="field-row">
                         <div class="field">
-                            <label for="pickup-date" id="date-label">PICKUP DATE</label>
-                            <input type="date" id="pickup-date" name="pickup-date">
+                            <label for="pickup-date" id="date-label">DELIVERY DATE</label>
+                            <input type="date" id="pickup-date" name="pickup-date" value="2026-08-15">
                         </div>
 
                         <div class="field">
-                            <label for="pickup-time" id="time-label">PICKUP TIME</label>
+                            <label for="pickup-time" id="time-label">DELIVERY TIME</label>
                             <select id="pickup-time" name="pickup-time">
-                                <option value="" selected disabled>Select a time slot</option>
                                 <option value="8-10">8:00 AM – 10:00 AM</option>
                                 <option value="10-12">10:00 AM – 12:00 PM</option>
-                                <option value="13-15">1:00 PM – 3:00 PM</option>
+                                <option value="13-15" selected>1:00 PM – 3:00 PM</option>
                                 <option value="15-17">3:00 PM – 5:00 PM</option>
                             </select>
                         </div>
@@ -167,12 +154,16 @@
 
                     <div class="field" id="address-field">
                         <label for="address">DELIVERY ADDRESS</label>
-                        <input type="text" id="address" name="address" placeholder="Enter delivery address">
+                        <input type="text" id="address" name="address" value="123, Sample St., Brgy. 1, Manila, Metro Manila">
                     </div>
                 </div>
             </section>
 
-            <button type="submit" class="submit-order">ADD ORDER</button>
+            <div class="action-row">
+                <a href="dashboard.html" class="action-btn btn-cancel">CANCEL</a>
+                <button type="button" class="action-btn btn-delete">DELETE</button>
+                <button type="submit" class="action-btn btn-update">UPDATE</button>
+            </div>
 
         </form>
     </main>

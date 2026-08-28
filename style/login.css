@@ -11,12 +11,11 @@ body {
 
 .left-panel {
   flex: 1;
-  background: #ececec;
+  background-color: rgb(74, 255, 255);
   position: relative;
-  border-right: 1px dashed #d6d6d6;
 
   /*
-    background:url(images/laundry.jpg) center/cover; can we please get a good picture of the beneficiary
+    background:url(images/laundry.jpg) ; can we please get a good picture of the beneficiary
     */
 }
 

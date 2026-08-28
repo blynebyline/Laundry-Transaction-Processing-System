@@ -4,25 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/style/global.css">
-    <link rel="stylesheet" href="/style/summary.css">
+    <link rel="stylesheet" href="/style/view.css">
     <link rel="stylesheet" href="/style/header.css">
-    <title>Order Summary</title>
+    <title>Order Details</title>
 </head>
 <body>
     <header>
         <nav class="header-nav">
-            <a href="order.html">EDIT ORDER</a>
+            <a href="dashboard.html">Dashboard</a>
         </nav>
  
         <a href="login.html" class="logout">LOGOUT</a>
     </header>
  
     <main>
-        <h2>Order Summary</h2>
+        <h2>Order Details</h2>
         <form action="" method="post">
         <section>
             <h3>SERVICE DETAILS</h3>
+            <div class="summary-address-details customer-detail">
+                <h4>Customer</h4>
+                <p>Bryne Arriola</p>
+             </div>
+             <hr>
+
             <div class="summary-service-details">
+                
                 <div class="service-title service-p">
                     <p>SERVICE TYPE</p>
                     <p>ESTIMATED WEIGHT</p>
@@ -65,7 +72,7 @@
              <hr>
              <div class="summary-total">
                 <div class="service-p">
-                    <p>TOTAL AMOUNT</p>
+                    <p>ESTIMATED TOTAL AMOUNT</p>
                 </div>
                 <div class="service-p">
                     <p id="total-amount">&#8369; 120</p>
@@ -73,7 +80,7 @@
              </div>
              <hr>
  
-             <button class="submit-order"><a href="track.html">PLACE ORDER</a></button>
+             <button class="submit-order"><a href="dashboard.html">Back To Dashboard</a></button>
  
  
         </section>
