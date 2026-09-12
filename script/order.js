@@ -1,6 +1,4 @@
 const modeRadios = document.querySelectorAll('input[name="mode"]');
-const serviceTypeSection = document.getElementById('service-type-section');
-const machinesSection = document.getElementById('machines-section');
 const scheduleSection = document.getElementById('schedule-section');
 const addressField = document.getElementById('address-field');
 const scheduleTitle = document.getElementById('schedule-title');
@@ -10,8 +8,6 @@ const addressInput = document.getElementById('address');
 
 const modeConfig = {
     'pickup': {
-        showServiceType: true,
-        showMachines: false,
         showSchedule: true,
         showAddress: false,
         scheduleTitle: 'PICKUP SCHEDULE',
@@ -19,19 +15,11 @@ const modeConfig = {
         timeLabel: 'PICKUP TIME'
     },
     'delivery': {
-        showServiceType: true,
-        showMachines: false,
         showSchedule: true,
         showAddress: true,
         scheduleTitle: 'DELIVERY SCHEDULE',
         dateLabel: 'DELIVERY DATE',
         timeLabel: 'DELIVERY TIME'
-    },
-    'self-service': {
-        showServiceType: false,
-        showMachines: true,
-        showSchedule: false,
-        showAddress: false
     }
 };
 
@@ -39,8 +27,6 @@ function updateMode(mode) {
     const config = modeConfig[mode];
     if (!config) return;
 
-    serviceTypeSection.style.display = config.showServiceType ? '' : 'none';
-    machinesSection.style.display = config.showMachines ? '' : 'none';
     scheduleSection.style.display = config.showSchedule ? '' : 'none';
 
     if (config.showSchedule) {
@@ -60,7 +46,11 @@ modeRadios.forEach(function (radio) {
     });
 });
 
+// this the one in the statr 
+
 const initialMode = document.querySelector('input[name="mode"]:checked');
 if (initialMode) {
     updateMode(initialMode.value);
 }
+
+

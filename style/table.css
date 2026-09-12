@@ -161,3 +161,5 @@
 .page-btn:hover:not(.active) {
     background: var(--color-bg-hover-light);
 }
+
+/* Unfortunately the color for payments status cant work so its inline for now*/

@@ -1,0 +1,70 @@
+.notif {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background-color: #ffffff;
+    color: #1d1d1d;
+    padding: 14px 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto;
+    max-width: 350px;
+}
+
+.notif.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Optional colored accent bar on the left */
+.notif::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: #2e7d32; /* green for success */
+    border-radius: 10px 0 0 10px;
+}
+
+/* Dark version – if you prefer a dark background */
+.notif-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.notif-dark::before {
+    background-color: #4caf50;
+}
+
+.notif-message {
+    flex: 1;
+    line-height: 1.4;
+}
+
+.notif-close {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 20px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0 0 0 8px;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+}
+
+.notif-close:hover {
+    opacity: 1;
+}
