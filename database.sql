@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS orders (
     order_code VARCHAR(20) NOT NULL UNIQUE,     
     customer_name VARCHAR(150) NOT NULL,
 
-    mode ENUM('pickup', 'delivery', 'self-service') NOT NULL,
+    mode ENUM('pickup', 'delivery',) NOT NULL,
     service_type ENUM('wash-fold', 'dry-cleaning', 'full-service', 'fold-only') NULL,
 
     washer_count TINYINT NULL,                 
