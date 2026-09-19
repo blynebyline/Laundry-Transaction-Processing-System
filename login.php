@@ -2,78 +2,81 @@
 require_once __DIR__ . '/includes/config.php';
 
 if (isLoggedIn()) {
-    header('Location: dashboard.php');
-    exit;
+  header('Location: dashboard.php');
+  exit;
 }
 
 $error = false;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-    $password = $_POST['password'] ?? '';
+  $email = trim($_POST['email'] ?? '');
+  $password = $_POST['password'] ?? '';
 
-    $users = new User($db);
-    $user = $users->attemptLogin($email, $password);
+  $users = new User($db);
+  $user = $users->attemptLogin($email, $password);
 
-    if ($user) {
+  if ($user) {
 
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['user_email'] = $user['email'];
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['user_email'] = $user['email'];
 
-        header('Location: dashboard.php');
-        exit;
-    } else {
-        
-        $error = true;
-    }
+    header('Location: dashboard.php');
+    exit;
+  } else {
+
+    $error = true;
+  }
 }
 
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style/global.css" />
-    <link rel="stylesheet" href="style/login.css" />
-    <title>Login</title>
-  </head>
-  <body>
-    <div class="login-container">
-      <div class="left-panel"></div>
 
-      <!-- Right Side -->
-      <div class="right-panel">
-        <div class="login-box">
-          <h1>WELCOME!</h1>
-          <br>
-          <br>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style/global.css" />
+  <link rel="stylesheet" href="style/login.css" />
+  <title>Login</title>
+</head>
 
-          <p class="subtitle">SIGN IN TO YOUR ACCOUNT</p>
+<body>
+  <div class="login-container">
+    <div class="left-panel"></div>
 
-          <?php if ($error): ?>
-            <p class="login-error" style="color: red">Invalid email or password.</p>
-          <?php endif; ?>
+    <!-- Right Side -->
+    <div class="right-panel">
+      <div class="login-box">
+        <h1>WELCOME!</h1>
+        <br>
+        <br>
 
-          <form action="login.php" method="POST">
-            <label for="email">Email Address</label>
-            <input type="email" id="email" name="email" placeholder="you@email.com" required />
+        <p class="subtitle">SIGN IN TO YOUR ACCOUNT</p>
 
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="••••••••" required />
+        <?php if ($error): ?>
+          <p class="login-error" style="color: red">Invalid email or password.</p>
+        <?php endif; ?>
 
-            <div class="options">
-              <label class="remember">
-                <input type="checkbox" name="remember" /> Remember Me
-              </label>
+        <form action="login.php" method="POST">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="you@email.com" required />
 
-              <a href="#">Forgot Password?</a>
-            </div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="••••••••" required />
 
-            <button type="submit" class="signin-btn">SIGN IN</button>
-          </form>
-        </div>
+          <div class="options">
+            <label class="remember">
+              <input type="checkbox" name="remember" /> Remember Me
+            </label>
+
+            <a href="#">Forgot Password?</a>
+          </div>
+
+          <button type="submit" class="signin-btn">SIGN IN</button>
+        </form>
       </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

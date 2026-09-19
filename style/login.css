@@ -11,12 +11,8 @@ body {
 
 .left-panel {
   flex: 1;
-  background-color: rgb(74, 255, 255);
+  background-color: black;
   position: relative;
-
-  /*
-    background:url(images/laundry.jpg) ; can we please get a good picture of the beneficiary
-    */
 }
 
 /* RIGHT */

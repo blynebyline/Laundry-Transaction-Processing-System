@@ -8,7 +8,7 @@ if (!isLoggedIn()) {
 
 $ordersModel = new Orders($db);
 
-// Fetch all orders (latest first)
+// Fetch all orders (Syempre una ung pinaka latest)
 $orders = $ordersModel->findAll('id DESC');
 
 // Calculate stats
@@ -59,7 +59,8 @@ include __DIR__ . '/includes/header.php';
 ?>
 
 <main>
-    <!-- STATS - this is where the admin can see those revenues. In the following.
+    <!-- 
+    STATS - this is where the admin can see those revenues.
 
     This is connected to the database but it is calculated here.
     -->
@@ -131,11 +132,11 @@ include __DIR__ . '/includes/header.php';
                             <td><span class="status-text <?= strtolower($order['order_status']) ?>"><?= ucfirst($order['order_status']) ?></span></td>
                             <td><span class="payment-text" style="color: <?= $order['payment_status'] === 'paid' ? 'green' : 'red' ?>;"><?= ucfirst($order['payment_status']) ?></span></td>
                             <td>
-                                <a href="update.php?id=<?= $order['id'] ?>" class="action-link">UPDATE</a>
+                                <a href="update.php?id=<?= $order['id'] ?>" class="action-link" style="color: blue;">UPDATE</a>
                                 <form action="delete.php" method="POST" style="display:inline;" onsubmit="return confirm('Delete this order?');">
                                     <input type="hidden" name="id" value="<?= $order['id'] ?>">
-                                    <button type="submit" class="action-link" style="background:none;border:none;cursor:pointer;">DELETE</button>
-                                </form>
+                                    <button type="submit" class="action-link" style="background:none;border:none;cursor:pointer; color: red;">DELETE</button>
+                                </form> <!-- lagay ko muna dito styling ng iba, di maayos sa external css kahit tama nmn-->
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -6,7 +6,6 @@ abstract class Model
     protected PDO $db;
     protected string $table;
 
-    // Model.php
     public function __construct(PDO $db)
     {
         $this->db = $db;

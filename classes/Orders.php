@@ -6,10 +6,6 @@ class Orders extends Model
 {
     protected string $table = 'orders';
 
-    /**
-     * Create a new order from $_POST-style data (order.php).
-     * Generates the next ORD-#### code automatically.
-     */
     public function create(array $data): int
     {
         $weight = isset($data['weight']) && $data['weight'] !== '' ? (float)$data['weight'] : 0;
@@ -61,17 +57,9 @@ class Orders extends Model
         return $this->updateById($id, ['order_status' => $status]);
     }
 
-    public function findByOrderCode(string $code): ?array
-    {
-        $stmt = $this->db->prepare("SELECT * FROM {$this->table} WHERE order_code = :code LIMIT 1");
-        $stmt->execute(['code' => $code]);
-        return $stmt->fetch() ?: null;
-    }
-
-    /**
-     * Calculate the amount based on service type and weight.
-     * Pricing per 8kg chunk, rounded up.
-     */
+    
+    // CALCULATES THE TOTAL 
+    // NOTE: BAGUHIN TO IF NAGBAGO RIN PRESYO NILA 
     private function calculateAmount(string $serviceType, float $weight): float
     {
         $prices = [
@@ -83,12 +71,13 @@ class Orders extends Model
 
         $base = $prices[$serviceType] ?? 0;
 
-        // Ensure at least one chunk
         $chunks = $weight > 0 ? ceil($weight / 8) : 1;
 
         return $base * $chunks;
     }
 
+    //  PARA WALANG PAREHONGO ORDER ID
+    //  BASICALLY: Kunin last then aadd ng +1 para ayun ung ibigay na number
     private function generateOrderCode(): string
     {
         $stmt = $this->db->query("SELECT order_code FROM {$this->table} ORDER BY id DESC LIMIT 1");

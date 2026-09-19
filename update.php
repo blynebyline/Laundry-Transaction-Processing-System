@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>Modify the order details below.</p>
             </div>
 
-            <!-- Order ID (readonly) -->
+            <!-- Order ID (readonly cuz theres no reason to change this one) -->
             <section class="customer">
                 <div class="section-title">ORDER ID</div>
                 <div class="section-body">
@@ -266,81 +266,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
     </main>
 
-    <!-- Mode toggle script (inline) -->
-    <script>
-        const modeRadios = document.querySelectorAll('input[name="mode"]');
-        const scheduleSection = document.getElementById('schedule-section');
-        const addressField = document.getElementById('address-field');
-        const scheduleTitle = document.getElementById('schedule-title');
-        const dateLabel = document.getElementById('date-label');
-        const timeLabel = document.getElementById('time-label');
-        const addressInput = document.getElementById('address');
-
-        const modeConfig = {
-            'pickup': {
-                showSchedule: true,
-                showAddress: false,
-                scheduleTitle: 'PICKUP SCHEDULE',
-                dateLabel: 'PICKUP DATE',
-                timeLabel: 'PICKUP TIME'
-            },
-            'delivery': {
-                showSchedule: true,
-                showAddress: true,
-                scheduleTitle: 'DELIVERY SCHEDULE',
-                dateLabel: 'DELIVERY DATE',
-                timeLabel: 'DELIVERY TIME'
-            }
-        };
-
-        function updateMode(mode) {
-            const config = modeConfig[mode];
-            if (!config) return;
-
-            scheduleSection.style.display = config.showSchedule ? '' : 'none';
-
-            if (config.showSchedule) {
-                addressField.style.display = config.showAddress ? '' : 'none';
-                scheduleTitle.textContent = config.scheduleTitle;
-                dateLabel.textContent = config.dateLabel;
-                timeLabel.textContent = config.timeLabel;
-                addressInput.required = config.showAddress;
-            } else {
-                addressInput.required = false;
-            }
-        }
-
-        modeRadios.forEach(radio => {
-            radio.addEventListener('change', e => updateMode(e.target.value));
-        });
-
-        // Init
-        const initialMode = document.querySelector('input[name="mode"]:checked');
-        if (initialMode) updateMode(initialMode.value);
-    </script>
-
-    <!-- Notification functions (inline) -->
-    <script>
-        function showNotif(message) {
-            const notif = document.getElementById('notif');
-            const notifMsg = document.getElementById('notif-message');
-            if (notif && notifMsg) {
-                notifMsg.textContent = message;
-                notif.style.display = 'flex';
-                void notif.offsetWidth;
-                notif.classList.add('show');
-            }
-        }
-
-        function hideNotif() {
-            const notif = document.getElementById('notif');
-            if (notif) {
-                notif.classList.remove('show');
-                setTimeout(() => {
-                    notif.style.display = 'none';
-                }, 300);
-            }
-        }
-    </script>
+    <script src="script/order.js"></script>
+    <script src="script/notif.js"></script>
 </body>
 </html>
