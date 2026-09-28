@@ -1,7 +1,6 @@
 <?php
 require_once __DIR__ . '/includes/config.php';
 
-// Redirect if not logged in
 if (!isLoggedIn()) {
     header('Location: login.php');
     exit;
@@ -10,7 +9,6 @@ if (!isLoggedIn()) {
 $errors = [];
 $success = false;
 
-// Check if order ID is provided
 if (!isset($_GET['id']) || empty($_GET['id'])) {
     header('Location: dashboard.php');
     exit;
@@ -25,10 +23,19 @@ if (!$order) {
     exit;
 }
 
+$customerModel = new Customer($db);
+$machineModel  = new Machine($db);
+
+$customers = $customerModel->findAll('name ASC');
+$machines  = $machineModel->getGroupedByType();
+
+// Machines currently assigned to this order
+$assignedMachines = $machineModel->getForOrder($orderId);
+$assignedIds = array_map(fn($m) => (int)$m['id'], $assignedMachines);
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Basic validation
-    if (empty($_POST['customerName'])) {
-        $errors[] = 'Customer name is required.';
+    if (empty($_POST['customer_id']) && empty($_POST['customerName'])) {
+        $errors[] = 'Please select a customer.';
     }
     if (empty($_POST['mode']) || !in_array($_POST['mode'], ['pickup', 'delivery'])) {
         $errors[] = 'Please select a valid mode.';
@@ -43,19 +50,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'Delivery address is required.';
     }
 
-    // Validate order status
     $allowedStatuses = ['pending', 'washing', 'finished'];
     if (empty($_POST['order_status']) || !in_array($_POST['order_status'], $allowedStatuses)) {
         $errors[] = 'Invalid order status.';
     }
 
     if (empty($errors)) {
+        // If a customer was selected, fill customer_name from the record
+        if (!empty($_POST['customer_id'])) {
+            $cust = $customerModel->findById((int)$_POST['customer_id']);
+            if ($cust) {
+                $_POST['customerName'] = $cust['name'];
+                $_POST['address'] = $_POST['address'] ?: $cust['address'];
+            }
+        }
+
         $updated = $orders->updateOrder($orderId, $_POST);
         if ($updated) {
             $orders->updateStatus($orderId, $_POST['order_status']);
             $success = true;
-            // Refresh order data
+
+            // Refresh order data and machine lists
             $order = $orders->findById($orderId);
+            $machines = $machineModel->getGroupedByType();
+            $assignedMachines = $machineModel->getForOrder($orderId);
+            $assignedIds = array_map(fn($m) => (int)$m['id'], $assignedMachines);
         } else {
             $errors[] = 'Failed to update order. Please try again.';
         }
@@ -79,10 +98,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <span id="notif-message" class="notif-message"></span>
         <button class="notif-close" onclick="hideNotif()">×</button>
     </div>
+    <script src="script/notif.js"></script>
 
     <header>
         <nav class="header-nav">
             <a href="dashboard.php">Dashboard</a>
+            <a href="machine.php">Machines</a>
+            <a href="customer.php">Add Customer</a>
         </nav>
         <a href="logout.php" class="logout">LOGOUT</a>
     </header>
@@ -111,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <p>Modify the order details below.</p>
             </div>
 
-            <!-- Order ID (readonly cuz theres no reason to change this one) -->
+            <!-- Order ID (readonly) -->
             <section class="customer">
                 <div class="section-title">ORDER ID</div>
                 <div class="section-body">
@@ -122,13 +144,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </section>
 
-            <!-- Customer Details -->
+            <!-- Customer -->
             <section class="customer">
-                <div class="section-title">CUSTOMER DETAILS</div>
+                <div class="section-title">CUSTOMER</div>
                 <div class="section-body">
                     <div class="field">
-                        <label for="customerName">CUSTOMER NAME</label>
-                        <input type="text" name="customerName" id="customerName" value="<?= h($order['customer_name']) ?>" required>
+                        <label for="customer_id">SELECT CUSTOMER</label>
+                        <select name="customer_id" id="customer_id" required>
+                            <option value="">— Choose a customer —</option>
+                            <?php foreach ($customers as $cust): ?>
+                                <option value="<?= (int)$cust['id'] ?>"
+                                    <?= (int)($order['customer_id'] ?? 0) === (int)$cust['id'] ? 'selected' : '' ?>>
+                                    <?= h($cust['name']) ?><?= $cust['address'] ? ' — ' . h($cust['address']) : '' ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                        <small style="font-size: 11px; color: #666; margin-top: 6px;">
+                            Customer not listed? <a href="customer.php">Add a new customer</a>.
+                        </small>
                     </div>
                 </div>
             </section>
@@ -152,15 +185,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="field">
                         <label for="order_status">STATUS</label>
                         <select id="order_status" name="order_status" required>
-                            <option value="pending" <?= $order['order_status'] === 'pending' ? 'selected' : '' ?>>Pending</option>
-                            <option value="washing" <?= $order['order_status'] === 'washing' ? 'selected' : '' ?>>Washing</option>
+                            <option value="pending"  <?= $order['order_status'] === 'pending'  ? 'selected' : '' ?>>Pending</option>
+                            <option value="washing"  <?= $order['order_status'] === 'washing'  ? 'selected' : '' ?>>Washing</option>
                             <option value="finished" <?= $order['order_status'] === 'finished' ? 'selected' : '' ?>>Finished</option>
                         </select>
                     </div>
                 </div>
             </section>
 
-            <!-- Mode Selection -->
+            <!-- Mode -->
             <section class="select-mode">
                 <div class="section-title">SELECT MODE</div>
                 <div class="mode-toggle">
@@ -202,6 +235,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </section>
 
+            <!-- Machines -->
+            <section class="machines-section">
+                <div class="section-title">ASSIGN MACHINES</div>
+                <div class="section-body">
+                    <div class="machine-picker">
+                        <div class="machine-picker-col">
+                            <p class="machine-picker-label">WASHERS</p>
+                            <?php foreach ($machines['washer'] as $m): ?>
+                                <?php
+                                    $mid = (int)$m['id'];
+                                    $isAssignedHere = in_array($mid, $assignedIds, true);
+                                    $isVacant = $m['status'] === 'vacant';
+                                    $canPick = $isAssignedHere || $isVacant;
+                                ?>
+                                <label class="machine-pick <?= $canPick ? '' : 'disabled' ?>">
+                                    <input type="checkbox"
+                                           name="machines[]"
+                                           value="<?= $mid ?>"
+                                           <?= $isAssignedHere ? 'checked' : '' ?>
+                                           <?= $canPick ? '' : 'disabled' ?>>
+                                    <?= h($m['name']) ?>
+                                    <span class="machine-pick-status"><?= h($m['status']) ?></span>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+
+                        <div class="machine-picker-col">
+                            <p class="machine-picker-label">DRYERS</p>
+                            <?php foreach ($machines['dryer'] as $m): ?>
+                                <?php
+                                    $mid = (int)$m['id'];
+                                    $isAssignedHere = in_array($mid, $assignedIds, true);
+                                    $isVacant = $m['status'] === 'vacant';
+                                    $canPick = $isAssignedHere || $isVacant;
+                                ?>
+                                <label class="machine-pick <?= $canPick ? '' : 'disabled' ?>">
+                                    <input type="checkbox"
+                                           name="machines[]"
+                                           value="<?= $mid ?>"
+                                           <?= $isAssignedHere ? 'checked' : '' ?>
+                                           <?= $canPick ? '' : 'disabled' ?>>
+                                    <?= h($m['name']) ?>
+                                    <span class="machine-pick-status"><?= h($m['status']) ?></span>
+                                </label>
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- Load Details -->
             <section class="service-details">
                 <div class="section-title">LOAD DETAILS</div>
@@ -219,6 +302,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="items">NUMBER OF ITEMS</label>
                             <input type="number" id="items" name="items" min="0" value="<?= h($order['item_count']) ?>">
                         </div>
+                    </div>
+
+                    <div class="field">
+                        <label for="extras">EXTRAS / ADD-ONS</label>
+                        <textarea id="extras" name="extras" rows="3" placeholder="e.g. Extra soap, fabric conditioner, bleach..."><?= h($order['extras']) ?></textarea>
                     </div>
 
                     <div class="field">
@@ -242,7 +330,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <label for="pickup-time" id="time-label"><?= $order['mode'] === 'delivery' ? 'DELIVERY TIME' : 'PICKUP TIME' ?></label>
                             <select id="pickup-time" name="pickup-time" required>
                                 <option value="" disabled>Select a time slot</option>
-                                <option value="8-10" <?= $order['schedule_time'] === '8-10' ? 'selected' : '' ?>>8:00 AM – 10:00 AM</option>
+                                <option value="8-10"  <?= $order['schedule_time'] === '8-10'  ? 'selected' : '' ?>>8:00 AM – 10:00 AM</option>
                                 <option value="10-12" <?= $order['schedule_time'] === '10-12' ? 'selected' : '' ?>>10:00 AM – 12:00 PM</option>
                                 <option value="13-15" <?= $order['schedule_time'] === '13-15' ? 'selected' : '' ?>>1:00 PM – 3:00 PM</option>
                                 <option value="15-17" <?= $order['schedule_time'] === '15-17' ? 'selected' : '' ?>>3:00 PM – 5:00 PM</option>
@@ -250,15 +338,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
 
-                    <!-- Address field (only for delivery) -->
                     <div class="field" id="address-field" <?= $order['mode'] === 'delivery' ? '' : 'style="display: none;"' ?>>
                         <label for="address">DELIVERY ADDRESS</label>
                         <input type="text" id="address" name="address" value="<?= h($order['address']) ?>" <?= $order['mode'] === 'delivery' ? 'required' : '' ?>>
                     </div>
+
+                    <div class="field" id="delivery-note-field" <?= $order['mode'] === 'delivery' ? '' : 'style="display: none;"' ?>>
+                        <label for="delivery_note">DELIVERY NOTE</label>
+                        <textarea id="delivery_note" name="delivery_note" rows="3" placeholder="e.g. Gate code, landmarks, directions..."><?= h($order['delivery_note']) ?></textarea>
+                    </div>
                 </div>
             </section>
 
-            <!-- Action Buttons -->
+            <!-- Actions -->
             <div class="action-row">
                 <a href="dashboard.php" class="action-btn btn-cancel">CANCEL</a>
                 <button type="submit" class="action-btn btn-update">UPDATE</button>
@@ -267,6 +359,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </main>
 
     <script src="script/order.js"></script>
-    <script src="script/notif.js"></script>
 </body>
 </html>

@@ -5,6 +5,8 @@ session_start();
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../classes/Orders.php';
 require_once __DIR__ . '/../classes/User.php';
+require_once __DIR__ . '/../classes/Customer.php';
+require_once __DIR__ . '/../classes/Machine.php';
 
 $database = new Database();
 $db = $database->conn;

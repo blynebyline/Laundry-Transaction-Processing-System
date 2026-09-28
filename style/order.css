@@ -277,6 +277,49 @@ textarea:focus {
     background-color: var(--color-black-hover);
 }
 
+/* machine machinee*/
+.machine-picker {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.machine-picker-label {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--color-text-soft);
+    margin-bottom: 10px;
+}
+
+.machine-pick {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    border: var(--border-styling);
+    background: var(--color-bg-table-head);
+    font-size: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+
+.machine-pick.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.machine-pick input[type="checkbox"] {
+    width: auto;
+    margin-right: 8px;
+}
+
+.machine-pick-status {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--color-text-soft);
+}
 /* responsive */
 
 @media (max-width: 600px) {
@@ -288,5 +331,9 @@ textarea:focus {
     .field-row {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    .machine-picker {
+        grid-template-columns: 1fr;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . '/Model.php';
+require_once __DIR__ . '/Machine.php';
 
 class Orders extends Model
 {
@@ -13,12 +14,15 @@ class Orders extends Model
 
         $payload = [
             'order_code'           => $this->generateOrderCode(),
+            'customer_id'          => $data['customer_id'] ?? null,
             'customer_name'        => $data['customerName'],
-            'mode'                 => $data['mode'],               
+            'mode'                 => $data['mode'],
             'service_type'         => $serviceType,
             'weight_kg'            => $weight ?: null,
             'item_count'           => $data['items'] ?? null,
             'special_instructions' => $data['instructions'] ?? null,
+            'extras'               => $data['extras'] ?? null,
+            'delivery_note'        => $data['delivery_note'] ?? null,
             'schedule_date'        => $data['pickup-date'] ?? null,
             'schedule_time'        => $data['pickup-time'] ?? null,
             'address'              => $data['address'] ?? null,
@@ -27,7 +31,16 @@ class Orders extends Model
             'payment_status'       => 'unpaid',
         ];
 
-        return $this->insert($payload);
+        $orderId = $this->insert($payload);
+
+        if (!empty($data['machines']) && is_array($data['machines'])) {
+            $machine = new Machine($this->db);
+            foreach ($data['machines'] as $machineId) {
+                $machine->assignToOrder($orderId, (int)$machineId);
+            }
+        }
+
+        return $orderId;
     }
 
     public function updateOrder(int $id, array $data): bool
@@ -36,12 +49,15 @@ class Orders extends Model
         $serviceType = $data['service-type'] ?? '';
 
         $payload = [
+            'customer_id'          => $data['customer_id'] ?? null,
             'customer_name'        => $data['customerName'],
             'mode'                 => $data['mode'],
             'service_type'         => $serviceType,
             'weight_kg'            => $weight ?: null,
             'item_count'           => $data['items'] ?? null,
             'special_instructions' => $data['instructions'] ?? null,
+            'extras'               => $data['extras'] ?? null,
+            'delivery_note'        => $data['delivery_note'] ?? null,
             'schedule_date'        => $data['pickup-date'] ?? null,
             'schedule_time'        => $data['pickup-time'] ?? null,
             'address'              => $data['address'] ?? null,
@@ -49,35 +65,47 @@ class Orders extends Model
             'payment_status'       => $data['payment'] ?? 'unpaid',
         ];
 
-        return $this->updateById($id, $payload);
+        $updated = $this->updateById($id, $payload);
+
+        $machine = new Machine($this->db);
+        $machine->releaseFromOrder($id);
+
+        if (!empty($data['machines']) && is_array($data['machines'])) {
+            foreach ($data['machines'] as $machineId) {
+                $machine->assignToOrder($id, (int)$machineId);
+            }
+        }
+
+        return $updated;
     }
 
     public function updateStatus(int $id, string $status): bool
     {
-        return $this->updateById($id, ['order_status' => $status]);
+        $updated = $this->updateById($id, ['order_status' => $status]);
+
+        if ($updated && $status === 'finished') {
+            $machine = new Machine($this->db);
+            $machine->releaseFromOrder($id);
+        }
+
+        return $updated;
     }
 
-    
-    // CALCULATES THE TOTAL 
-    // NOTE: BAGUHIN TO IF NAGBAGO RIN PRESYO NILA 
     private function calculateAmount(string $serviceType, float $weight): float
     {
         $prices = [
-            'wash-fold'     => 60,
-            'dry-cleaning'  => 60,
-            'full-service'  => 180,
-            'fold-only'     => 30,
+            'wash-fold'    => 60,
+            'dry-cleaning' => 60,
+            'full-service' => 180,
+            'fold-only'    => 30,
         ];
 
         $base = $prices[$serviceType] ?? 0;
-
         $chunks = $weight > 0 ? ceil($weight / 8) : 1;
 
         return $base * $chunks;
     }
 
-    //  PARA WALANG PAREHONGO ORDER ID
-    //  BASICALLY: Kunin last then aadd ng +1 para ayun ung ibigay na number
     private function generateOrderCode(): string
     {
         $stmt = $this->db->query("SELECT order_code FROM {$this->table} ORDER BY id DESC LIMIT 1");

@@ -164,7 +164,9 @@ include __DIR__ . '/includes/header.php';
         </div>
         <div class="panel quick-actions-panel">
             <p class="panel-title">QUICK ACTIONS</p>
-            <button type="button" class="quick-action-btn"><a href="order.php">Create Order</a></button>
+            <a href="order.php" class="quick-action-btn">New Order</a>
+            <a href="machine.php" class="quick-action-btn">View Machines</a>
+            <a href="customer.php" class="quick-action-btn">Add Customer</a>
         </div>
     </section>
 </main>

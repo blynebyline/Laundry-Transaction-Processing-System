@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,10 +13,16 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Admin Dashboard</title>
 </head>
+
 <body>
     <header>
+
         <nav class="header-nav">
-            <p id="header-admin">ADMIN</p>
+            <a href="dashboard.php">Dashboard</a>
+            <a href="order.php">New Order</a>
+            <a href="machine.php">Machines</a>
+            <a href="customer.php">Add Customer</a>
         </nav>
         <a href="logout.php" class="logout">LOGOUT</a>
+
     </header>
