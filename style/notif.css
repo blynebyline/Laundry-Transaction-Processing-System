@@ -26,7 +26,6 @@
     transform: translateX(0);
 }
 
-/* Optional colored accent bar on the left */
 .notif::before {
     content: '';
     position: absolute;
@@ -34,11 +33,10 @@
     top: 0;
     bottom: 0;
     width: 4px;
-    background-color: #2e7d32; /* green for success */
+    background-color: #2e7d32; 
     border-radius: 10px 0 0 10px;
 }
 
-/* Dark version – if you prefer a dark background */
 .notif-dark {
     background-color: #333;
     color: #fff;

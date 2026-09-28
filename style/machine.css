@@ -169,7 +169,6 @@
   background: var(--color-bg-table-head);
 }
 
-/* Responsive */
 @media (max-width: 900px) {
   .machine-grid {
     grid-template-columns: 1fr 1fr;
